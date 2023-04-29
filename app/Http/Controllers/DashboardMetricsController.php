@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\CreateDashboardMetricRequest;
 use App\Http\Requests\GetDashboardMetricRequest;
 use App\Http\Response;
-use App\Services\DashboardMetricRepository;
+use App\Repositories\DashboardMetricRepository;
 use App\Services\DashboardMetricService;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
