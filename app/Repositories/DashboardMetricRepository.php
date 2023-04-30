@@ -31,7 +31,7 @@ class DashboardMetricRepository
   {
     $startDate = $filters->pull('start_date') ?? null;
     $endDate = $filters->pull('end_date') ?? null;
-    $duration = $filters->pull('duration') ?? '';
+    $duration = $filters->pull('duration') ?? 'All';
     $name = $filters->pull('name');
 
     $duration = strtolower($duration);
@@ -63,7 +63,9 @@ class DashboardMetricRepository
     ];
 
     return DB::table('dashboard_metrics')
-      ->where('name', $name)
+      ->when(strtolower($name) !== 'all', function($q) use ($name){
+        return $q->where('name', $name);
+      })
       ->where(function($q) use ($startDate, $endDate) {
         $q->whereBetween('date', [Carbon::parse($startDate)->startOfDay(), Carbon::parse($endDate)->endOfDay()])
           ->orWhereBetween('date', [Carbon::parse($endDate)->startOfDay(), Carbon::parse($startDate)->endOfDay()]);
