@@ -67,8 +67,8 @@ class DashboardMetricRepository
         return $q->where('name', $name);
       })
       ->where(function($q) use ($startDate, $endDate) {
-        $q->whereBetween('date', [Carbon::parse($startDate)->startOfDay(), Carbon::parse($endDate)->endOfDay()])
-          ->orWhereBetween('date', [Carbon::parse($endDate)->startOfDay(), Carbon::parse($startDate)->endOfDay()]);
+        $q->whereBetween('date', [Carbon::parse($startDate), Carbon::parse($endDate)->endOfDay()])
+          ->orWhereBetween('date', [Carbon::parse($endDate), Carbon::parse($startDate)->endOfDay()]);
       })
       ->select(DB::raw("DATE_FORMAT(date, '$dateFormatLokup[$duration]') as $duration"))
       ->groupBy($duration)
