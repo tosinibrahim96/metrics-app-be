@@ -1,5 +1,7 @@
 # Metrics App Backend
 
+[Here](https://metrics-app-be.herokuapp.com/) is the server base url
+
  [![GitHub license](https://img.shields.io/github/license/gothinkster/laravel-realworld-example-app.svg)](http://opensource.org/licenses/mit-license.php)
 
 > ### Laravel backend codebase for a metrics app that accepts users metric values and dates that eventually plots a graph with the input values.
